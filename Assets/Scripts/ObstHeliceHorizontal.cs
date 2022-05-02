@@ -15,7 +15,6 @@ public class ObstHeliceHorizontal : MonoBehaviour
         b1_t = barilla1.GetComponent<Transform>();
         b2_t = barilla2.GetComponent<Transform>();
         g_t = gira.GetComponent<Transform>();
-        mov_timer = mov_duration;
     }
 
     // Update is called once per frame
@@ -42,10 +41,6 @@ public class ObstHeliceHorizontal : MonoBehaviour
         else 
         {
             stop_timer -= 1;
-            if(stop_timer < 0)
-            {
-                mov_timer = mov_duration;
-            }
         }
 
 

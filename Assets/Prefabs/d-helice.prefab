@@ -48,10 +48,10 @@ MonoBehaviour:
   barilla1: {fileID: 4770027517410961266}
   barilla2: {fileID: 7278339035745292263}
   gira: {fileID: 1382312229894816491}
-  barilla_speed: 0
-  spin_speed: 0
-  mov_time: 0
-  mov_cd: 0
+  barilla_speed: 10
+  spin_speed: 2
+  mov_duration: 0
+  stop_duration: 30
 --- !u!1 &1382312229894816491
 GameObject:
   m_ObjectHideFlags: 0
