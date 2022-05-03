@@ -38,4 +38,10 @@ public class PlayerController : MonoBehaviour
     {
         
     }
+
+    public void SetPath(PathCreator new_path)
+    {
+        path = new_path;
+        distanceTraveled = 0;
+    }
 }
