@@ -25,7 +25,6 @@ public class PathChanger : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            Debug.Log("player");
             pc.SetPath(path_in);
         }
     }
