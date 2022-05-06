@@ -5,6 +5,7 @@ public class MuslitoScript : MonoBehaviour
 {
     public GameObject gameObjInicio, gameObjFinal;
     public float velocidad;
+    public bool nogiro;
     private Vector3 DirectionNormalized;
     public enum MuslitoType { Tp_al_inicio, boomerang };
     public MuslitoType mus;
@@ -39,13 +40,10 @@ public class MuslitoScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
         if (mus == MuslitoType.boomerang) {
             if (direction)
             {
-                transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * 360));
+                if (!nogiro) transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * 360));
                 gameObject.transform.position += DirectionNormalized * velocidad * Time.deltaTime;
                 distance_traveled += velocidad * Time.deltaTime;
                 if (distance_traveled > distance)
@@ -56,7 +54,7 @@ public class MuslitoScript : MonoBehaviour
             else {
 
 
-                transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * -360));
+                if(!nogiro) transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * -360));
                 gameObject.transform.position -= DirectionNormalized * velocidad * Time.deltaTime;
                 distance_traveled -= velocidad * Time.deltaTime;
 
