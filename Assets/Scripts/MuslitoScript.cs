@@ -27,8 +27,12 @@ public class MuslitoScript : MonoBehaviour
         distance = Vector3.Distance(posFin,posIni);
         distance_traveled = 0;
         // Convert to -180 to +180 degrees
-        transform.LookAt(gameObjFinal.GetComponent<Transform>());
-        transform.Rotate(new Vector3(0, 90,0));
+	if(!nogiro)
+	{
+        	transform.LookAt(gameObjFinal.GetComponent<Transform>());
+        	transform.Rotate(new Vector3(0, 90,0));
+	}
+
 
         gameObjInicio.GetComponent<MeshRenderer>().enabled = false;
         gameObjFinal.GetComponent<MeshRenderer>().enabled = false;
