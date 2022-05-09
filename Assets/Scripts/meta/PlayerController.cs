@@ -3,16 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
 
+public struct checkpoint
+{
+    public float distance;
+    public PathCreator path;
+    //el tipo de camino??
+}
 public class PlayerController : MonoBehaviour
 {
-    public PathCreator path;
     public float speed = 1;
     float distanceTraveled;
+    PathCreator path;
     Vector3 pathRotation;
+    public checkpoint check_point;
+    bool end;
+
     // Start is called before the first frame update
     void Start()
     {
         distanceTraveled = 0;
+        end = false;
+        updatePathMovement();
+    }
+
+    public void setEnd()
+    {
+        end = true;
+    }
+
+    public void setCheckpoint()
+    {
+        check_point.distance = distanceTraveled;
+        check_point.path = path;
+    }
+    public void SetPath(PathCreator new_path)
+    {
+        path = new_path;
+        distanceTraveled = 0;
+        setCheckpoint();
+    }
+
+    public void reSpawn()
+    {
+        path = check_point.path;
+        distanceTraveled = check_point.distance;
         updatePathMovement();
     }
 
@@ -26,10 +60,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.Space))
+        if(Input.GetKey(KeyCode.Space) && !end)
         {
             distanceTraveled += speed;
             updatePathMovement();
+        }
+        if (Input.GetKey(KeyCode.R))
+        {
+            reSpawn();
         }
     }
 
@@ -39,9 +77,4 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void SetPath(PathCreator new_path)
-    {
-        path = new_path;
-        distanceTraveled = 0;
-    }
 }
