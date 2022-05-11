@@ -17,6 +17,14 @@ public class PlayerController : MonoBehaviour
     Vector3 pathRotation;
     public checkpoint check_point;
     bool end;
+    private bool godMode, moving;
+    public Vector3 deathJump;
+    private float dying;
+    public float deathTime;
+    private Rigidbody RG;
+
+    public GameObject rat;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +32,9 @@ public class PlayerController : MonoBehaviour
         distanceTraveled = 0;
         end = false;
         updatePathMovement();
+        godMode = false;
+        dying = -1;
+        RG = rat.GetComponent<Rigidbody>();
     }
 
     public void setEnd()
@@ -47,34 +58,70 @@ public class PlayerController : MonoBehaviour
     {
         path = check_point.path;
         distanceTraveled = check_point.distance;
+
         updatePathMovement();
+        rat.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        rat.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     private void updatePathMovement()
-    { 
-        transform.position = path.path.GetPointAtDistance(distanceTraveled);
-        pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
-        transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));
+    {
+        if (dying == -1)
+        {
+            transform.position = path.path.GetPointAtDistance(distanceTraveled);
+            pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
+            transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));
+        }
     }
 
 
     private void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.Space) && !end)
+        if (moving)
         {
             distanceTraveled += speed;
             updatePathMovement();
-        }
-        if (Input.GetKey(KeyCode.R))
-        {
-            reSpawn();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        moving = Input.GetKey(KeyCode.Space) && !end;
+        if (Input.GetKey(KeyCode.R))
+        {
+            reSpawn();
+        }
+        if (Input.GetKey(KeyCode.G))
+        {
+            godMode = !godMode;
+        }
+        if (dying != -1)
+        {
+            dying += Time.deltaTime;
+            if (dying > deathTime) {
+                dying = -1;
+                RG.isKinematic = true;
 
+                reSpawn();
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Obstaculo"))
+        {
+            if (!godMode && dying == -1) {
+                RG.isKinematic = false;
+
+                float randX = Random.Range(-300, 300);
+                float randZ = Random.Range(-300, 300);
+
+                RG.AddForce(deathJump + new Vector3 (randX,0,randZ));
+                RG.AddTorque(new Vector3(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300)));
+                dying = 0;
+            }
+        }
+        else Debug.Log("no es obstaculo");
+    }
 }
