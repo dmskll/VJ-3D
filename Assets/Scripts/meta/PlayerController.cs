@@ -9,6 +9,8 @@ public struct checkpoint
     public PathCreator path;
     //el tipo de camino??
 }
+
+public enum movment { Run, ClimbUp, ClimbVert, Slide};
 public class PlayerController : MonoBehaviour
 {
     public float speed = 1;
@@ -22,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private float dying;
     public float deathTime;
     private Rigidbody RG;
-
+    public movment actual_movement;
     public GameObject rat;
 
 
@@ -35,6 +37,8 @@ public class PlayerController : MonoBehaviour
         godMode = false;
         dying = -1;
         RG = rat.GetComponent<Rigidbody>();
+
+        actual_movement = movment.Run;
     }
 
     public void setEnd()
@@ -79,8 +83,19 @@ public class PlayerController : MonoBehaviour
     {
         if (moving)
         {
-            distanceTraveled += speed;
-            updatePathMovement();
+            switch(actual_movement)
+            {
+                case (movment.Run):
+                    distanceTraveled += speed;
+                    updatePathMovement();
+                    break;
+                case (movment.ClimbUp):
+                    break;
+                case (movment.ClimbVert):
+                    break;
+                case (movment.Slide):
+                    break;
+            }
         }
     }
 
@@ -92,7 +107,7 @@ public class PlayerController : MonoBehaviour
         {
             reSpawn();
         }
-        if (Input.GetKey(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             godMode = !godMode;
         }
@@ -102,7 +117,7 @@ public class PlayerController : MonoBehaviour
             if (dying > deathTime) {
                 dying = -1;
                 RG.isKinematic = true;
-
+                
                 reSpawn();
             }
         }
