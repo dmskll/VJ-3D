@@ -12,7 +12,7 @@ public class StartController : MonoBehaviour
     void Start()
     {
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        pc.SetPath(path_start);
+        pc.SetPath(path_start, path_start.tag);
         pc.setCheckpoint();
     }
 }

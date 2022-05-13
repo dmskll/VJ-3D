@@ -24,7 +24,7 @@ public class PathChanger : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("rat"))
         {
-            pc.SetPath(path_in);
+            pc.SetPath(path_in, path_in.tag);
         }
     }
 }

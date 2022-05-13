@@ -8,6 +8,7 @@ TagManager:
   - win
   - rat
   - Obstaculo
+  - Slide
   layers:
   - Default
   - TransparentFX

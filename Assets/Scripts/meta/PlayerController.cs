@@ -10,11 +10,11 @@ public struct checkpoint
     //el tipo de camino??
 }
 
-public enum movment { Run, ClimbUp, ClimbVert, Slide};
+public enum movement { Run, ClimbUp, ClimbVert, Slide};
 public class PlayerController : MonoBehaviour
 {
     public float speed = 1;
-    float distanceTraveled;
+    float distanceTraveled = -1;
     PathCreator path;
     Vector3 pathRotation;
     public checkpoint check_point;
@@ -24,8 +24,13 @@ public class PlayerController : MonoBehaviour
     private float dying;
     public float deathTime;
     private Rigidbody RG;
-    public movment actual_movement;
+    public movement actual_movement;
     public GameObject rat;
+
+    public float jump_speed, jump_gravity;
+    float jump_actual_speed;
+    float cd_jump = -1;
+    bool jumping = false;
 
 
     // Start is called before the first frame update
@@ -33,12 +38,12 @@ public class PlayerController : MonoBehaviour
     {
         distanceTraveled = 0;
         end = false;
-        updatePathMovement();
         godMode = false;
         dying = -1;
+        //updateMovement();
         RG = rat.GetComponent<Rigidbody>();
 
-        actual_movement = movment.Run;
+        //actual_movement = movment.Run;
     }
 
     public void setEnd()
@@ -51,51 +56,117 @@ public class PlayerController : MonoBehaviour
         check_point.distance = distanceTraveled;
         check_point.path = path;
     }
-    public void SetPath(PathCreator new_path)
+    public void SetPath(PathCreator new_path, string s)
     {
         path = new_path;
         distanceTraveled = 0;
+        actual_movement = TagToMovement(s);
+        if(actual_movement == movement.Slide)
+        {
+            cd_jump = 0.4f; //para que no salta nada mas entrar en el path
+        }
+        
+        updateMovement(true);
         setCheckpoint();
     }
 
+    public movement TagToMovement(string s)
+    {
+        switch(s)
+        {
+            case ("Slide"):
+                return movement.Slide;
+            case ("Run"):
+                return movement.Run;
+            case ("ClimbUp"):
+                return movement.ClimbUp;
+        }
+        return movement.Run;
+    }
     public void reSpawn()
     {
         path = check_point.path;
         distanceTraveled = check_point.distance;
 
-        updatePathMovement();
+        updateMovement(true);
         rat.transform.localRotation = Quaternion.Euler(0, 0, 0);
         rat.transform.localPosition = new Vector3(0, 0, 0);
     }
 
-    private void updatePathMovement()
+    private void updateRun(bool force)
     {
-        if (dying == -1)
+        if(moving || force)
         {
+            distanceTraveled += speed;
             transform.position = path.path.GetPointAtDistance(distanceTraveled);
             pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
-            transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));
+            transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));    
         }
     }
 
+    private void updateSlide()
+    {
+        if(moving && !jumping)
+        {
+            if (cd_jump == -1)
+            {
+                jumping = true;
+                jump_actual_speed = jump_speed;
+            }
+            else
+            {
+                cd_jump -= Time.deltaTime;
+                if (cd_jump < 0) cd_jump = -1;
+            }
+               
+        }
+        if (jumping) distanceTraveled += speed * 2f;
+        else distanceTraveled += speed;
+        Vector3 position = path.path.GetPointAtDistance(distanceTraveled);
+        if (jumping)
+        {
+            jump_actual_speed -= jump_gravity;
+            float auxY = transform.position.y + jump_actual_speed;
+            if(auxY < position.y)
+            {
+                jumping = false;
+                cd_jump = 0.06f;
+            }
+            else
+            {
+                position.y = auxY;
+            }
+        }
+        transform.position = position;
+        pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
+        transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y, pathRotation.z));
+        transform.Rotate(0, -90, 0);
+    }
+
+
+    
+    private void updateMovement(bool force)
+    {
+        switch (actual_movement)
+        {
+            case (movement.Run):
+                updateRun(force);
+                break;
+            case (movement.ClimbUp):
+                break;
+            case (movement.ClimbVert):
+                break;
+            case (movement.Slide):
+                updateSlide();
+                break;
+        }
+    }
 
     private void FixedUpdate()
     {
-        if (moving)
+        if (dying == -1 && path != null)
         {
-            switch(actual_movement)
-            {
-                case (movment.Run):
-                    distanceTraveled += speed;
-                    updatePathMovement();
-                    break;
-                case (movment.ClimbUp):
-                    break;
-                case (movment.ClimbVert):
-                    break;
-                case (movment.Slide):
-                    break;
-            }
+            updateMovement(false);
         }
     }
 
