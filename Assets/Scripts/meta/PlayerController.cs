@@ -7,14 +7,19 @@ public struct checkpoint
 {
     public float distance;
     public PathCreator path;
+    public float progress;
     //el tipo de camino??
 }
 
 public enum movement { Run, ClimbUp, ClimbVert, Slide};
 public class PlayerController : MonoBehaviour
 {
+
+
     public float speed = 1;
     float distanceTraveled = -1;
+    float totaldistanceTraveled;
+
     PathCreator path;
     Vector3 pathRotation;
     public checkpoint check_point;
@@ -37,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         distanceTraveled = 0;
+        totaldistanceTraveled = 0;
         end = false;
         godMode = false;
         dying = -1;
@@ -55,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         check_point.distance = distanceTraveled;
         check_point.path = path;
+        check_point.progress = totaldistanceTraveled;
     }
     public void SetPath(PathCreator new_path, string s)
     {
@@ -87,17 +94,26 @@ public class PlayerController : MonoBehaviour
     {
         path = check_point.path;
         distanceTraveled = check_point.distance;
+        totaldistanceTraveled = check_point.progress;
 
         updateMovement(true);
         rat.transform.localRotation = Quaternion.Euler(0, 0, 0);
         rat.transform.localPosition = new Vector3(0, 0, 0);
     }
 
+    public void UpdateDistance(float s)
+    {
+        distanceTraveled += s;
+        totaldistanceTraveled += s;
+        ProgressController.instance.SetProgress(totaldistanceTraveled);
+    }
+
     private void updateRun(bool force)
     {
         if(moving || force)
         {
-            distanceTraveled += speed;
+            UpdateDistance(speed);
+
             transform.position = path.path.GetPointAtDistance(distanceTraveled);
             pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
             transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));    
@@ -120,8 +136,14 @@ public class PlayerController : MonoBehaviour
             }
                
         }
-        if (jumping) distanceTraveled += speed * 2f;
-        else distanceTraveled += speed;
+        if (jumping)
+        {
+            UpdateDistance(speed * 2f);
+        }
+        else
+        {
+            UpdateDistance(speed);
+        }
         Vector3 position = path.path.GetPointAtDistance(distanceTraveled);
         if (jumping)
         {
@@ -208,6 +230,5 @@ public class PlayerController : MonoBehaviour
                 dying = 0;
             }
         }
-        else Debug.Log("no es obstaculo");
     }
 }
