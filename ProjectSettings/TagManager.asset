@@ -9,6 +9,8 @@ TagManager:
   - rat
   - Obstaculo
   - Slide
+  - player1
+  - player2
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - 
   - 
   - player1
-  - 
+  - player2
   - metaobjects
   - 
   - 

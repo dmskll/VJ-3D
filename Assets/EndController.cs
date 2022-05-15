@@ -9,7 +9,7 @@ public class EndController : MonoBehaviour
     private PlayerController pc;
     void Start()
     {
-        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        pc = GameObject.FindGameObjectWithTag("player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
