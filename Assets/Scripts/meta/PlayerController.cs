@@ -14,7 +14,7 @@ public struct checkpoint
 public enum movement { Run, ClimbUp, ClimbVert, Slide};
 public class PlayerController : MonoBehaviour
 {
-
+    public float offset;
 
     public float speed = 1;
     float distanceTraveled = -1;
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         actual_movement = TagToMovement(s);
         if(actual_movement == movement.Slide)
         {
-            cd_jump = 0.4f; //para que no salta nada mas entrar en el path
+            cd_jump = 0.2f; //para que no salta nada mas entrar en el path
         }
         
         updateMovement(true);
@@ -116,7 +116,8 @@ public class PlayerController : MonoBehaviour
 
             transform.position = path.path.GetPointAtDistance(distanceTraveled);
             pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
-            transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));    
+            transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));
+            transform.localPosition += new Vector3(offset, 0, 0);
         }
     }
 
@@ -160,6 +161,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         transform.position = position;
+        transform.localPosition += new Vector3(offset, 0, 0);
         pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
         transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y, pathRotation.z));
         transform.Rotate(0, -90, 0);

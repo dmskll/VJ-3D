@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1386757248475851052}
   - component: {fileID: 1386757248475851053}
   - component: {fileID: 1386757248475851042}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: d-pathChanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,6 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3352b3c76cea2964d8c6786d632a6051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   path_in: {fileID: 0}
   path_out: {fileID: 0}
