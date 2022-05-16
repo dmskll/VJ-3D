@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
     {
         distanceTraveled += s;
         totaldistanceTraveled += s;
-        ProgressController.instance.SetProgress(totaldistanceTraveled);
+        ProgressController.instance.SetProgress(totaldistanceTraveled, gameObject.tag);
     }
 
     private void updateRun(bool force)
@@ -194,10 +194,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    bool InteractionKeyDown()
+    {
+        if(gameObject.tag.Equals("player1"))
+        {
+            return Input.GetKey(KeyCode.Space);
+        }
+        else if (gameObject.tag.Equals("player2"))
+        {
+            return Input.GetKey(KeyCode.Return);
+        }
+        return false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        moving = Input.GetKey(KeyCode.Space) && !end;
+        moving = InteractionKeyDown() && !end;
         if (Input.GetKey(KeyCode.R))
         {
             reSpawn();

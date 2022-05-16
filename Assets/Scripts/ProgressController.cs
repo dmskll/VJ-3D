@@ -12,10 +12,10 @@ public class ProgressController : MonoBehaviour
     public PathCreator[] paths = new PathCreator[10];
     EndOfPathInstruction stop = EndOfPathInstruction.Stop;
     float totaldistance = 0;
-    float progress = 0;
-    float percent;
+    float p1_progress = 0;
+    float p2_progress = 0;
 
-    public RectTransform bar_end, bar_start, bar_rat;
+    public RectTransform bar_end, bar_start, bar_p1, bar_p2;
     float distanceUI, preogressUI;
 
     void Awake()
@@ -65,15 +65,23 @@ public class ProgressController : MonoBehaviour
         }
     }
 
-    public void SetProgress(float x)
+    public void SetProgress(float x, string player_tag)
     {
-        progress = x;
+        if(player_tag.Equals("player1"))
+        {
+            p1_progress = x;
+        }
+        else
+        {
+            p2_progress = x;
+        }
     }
-
+/*
     public float GetProgress()
     {
-        return progress;
+        return null;
     }
+    */
 
     // Start is called before the first frame update
     void Start()
@@ -89,25 +97,17 @@ public class ProgressController : MonoBehaviour
         
     }
 
-    void DistanceToPercent()
-    {
-        percent = progress * 100 / totaldistance;
-    }
-
-    void PercentToUI()
-    {
-        preogressUI = percent * distanceUI / 100;
-    }
-
-    void UpdateUI()
-    {
-        bar_rat.position = new Vector3(bar_rat.position.x, bar_start.position.y + preogressUI, bar_rat.position.z);
-    }
 
     void FixedUpdate()
     {
-        DistanceToPercent();
-        PercentToUI();
-        UpdateUI();
+
+        float percent = p1_progress * 100 / totaldistance;
+        float preogressUI = percent * distanceUI / 100;
+        bar_p1.position = new Vector3(bar_p1.position.x, bar_start.position.y + preogressUI, bar_p1.position.z);
+
+        percent = p2_progress * 100 / totaldistance;
+        preogressUI = percent * distanceUI / 100;
+        bar_p2.position = new Vector3(bar_p2.position.x, bar_start.position.y + preogressUI, bar_p2.position.z);
+
     }
 }
