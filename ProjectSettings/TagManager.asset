@@ -11,6 +11,7 @@ TagManager:
   - Slide
   - player1
   - player2
+  - ClimbPath
   layers:
   - Default
   - TransparentFX

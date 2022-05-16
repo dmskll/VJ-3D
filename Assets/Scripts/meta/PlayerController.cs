@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     float totaldistanceTraveled;
 
     PathCreator path;
+
+    EndOfPathInstruction stop = EndOfPathInstruction.Stop;
     Vector3 pathRotation;
     public checkpoint check_point;
     bool end;
@@ -65,16 +67,18 @@ public class PlayerController : MonoBehaviour
     }
     public void SetPath(PathCreator new_path, string s)
     {
-        path = new_path;
-        distanceTraveled = 0;
-        actual_movement = TagToMovement(s);
-        if(actual_movement == movement.Slide)
-        {
-            cd_jump = 0.2f; //para que no salta nada mas entrar en el path
+        if (new_path != path) {
+            path = new_path;
+            distanceTraveled = 0;
+            actual_movement = TagToMovement(s);
+            if (actual_movement == movement.Slide)
+            {
+                cd_jump = 0.2f; //para que no salta nada mas entrar en el path
+            }
+
+            updateMovement(true);
+            setCheckpoint();
         }
-        
-        updateMovement(true);
-        setCheckpoint();
     }
 
     public movement TagToMovement(string s)
@@ -85,7 +89,7 @@ public class PlayerController : MonoBehaviour
                 return movement.Slide;
             case ("Run"):
                 return movement.Run;
-            case ("ClimbUp"):
+            case ("ClimbPath"):
                 return movement.ClimbUp;
         }
         return movement.Run;
@@ -167,7 +171,31 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0, -90, 0);
     }
 
+    private void updateClimb()
+    {
 
+        if (moving)
+        {
+            UpdateDistance(speed);
+
+            transform.position = path.path.GetPointAtDistance(distanceTraveled, stop);
+            pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
+            transform.localRotation = Quaternion.Euler(new Vector3(pathRotation.x + 90, pathRotation.y + 180,90));
+ 
+            transform.localPosition += new Vector3(offset, 0, 0);
+        }
+        else
+        {
+
+            UpdateDistance(-0.3f * speed);
+
+            transform.position = path.path.GetPointAtDistance(distanceTraveled, stop);
+            pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
+            transform.localRotation = Quaternion.Euler(new Vector3(pathRotation.x + 90, pathRotation.y + 180, 90));
+
+            transform.localPosition += new Vector3(offset, 0, 0);
+        }
+    }
     
     private void updateMovement(bool force)
     {
@@ -177,6 +205,10 @@ public class PlayerController : MonoBehaviour
                 updateRun(force);
                 break;
             case (movement.ClimbUp):
+                updateClimb();
+
+
+
                 break;
             case (movement.ClimbVert):
                 break;
