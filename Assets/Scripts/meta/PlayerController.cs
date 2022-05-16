@@ -39,6 +39,12 @@ public class PlayerController : MonoBehaviour
     float cd_jump = -1;
     bool jumping = false;
 
+    //transicion entre paths
+    bool movement_transition = false;
+    Vector3 end_position, start_position;
+    Quaternion end_rotation, start_rotation;
+    float t = 0, transition_speed; //elapsed time lerp
+
 
     // Start is called before the first frame update
     void Start()
@@ -65,19 +71,54 @@ public class PlayerController : MonoBehaviour
         check_point.path = path;
         check_point.progress = totaldistanceTraveled;
     }
+
+    public void SetUpTransition(movement past_movement)
+    {
+        movement_transition = true;
+        start_position = transform.position;
+
+        transform.position = path.path.GetPointAtDistance(0);
+        transform.localPosition += new Vector3(offset, 0, 0);
+        end_position = transform.position;
+        transform.position = start_position;
+
+        start_rotation = transform.rotation;
+
+        transition_speed = 50;
+        pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
+        switch (actual_movement)
+        {
+            case (movement.Run):
+                if(past_movement == movement.ClimbUp)
+                    transition_speed = 10;
+                transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));
+                break;
+            case (movement.Slide):
+                transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y, pathRotation.z));
+                transform.Rotate(0, -90, 0);
+                break;
+            case (movement.ClimbUp):
+                transition_speed = 10;
+                transform.localRotation = Quaternion.Euler(new Vector3(pathRotation.x + 90, pathRotation.y + 180, 90));
+                break;
+        }
+            
+        end_rotation = transform.rotation;
+        transform.rotation = start_rotation;
+    }
     public void SetPath(PathCreator new_path, string s)
     {
         if (new_path != path) {
+
             path = new_path;
             distanceTraveled = 0;
+            var past_movement = actual_movement;
             actual_movement = TagToMovement(s);
             if (actual_movement == movement.Slide)
             {
                 cd_jump = 0.2f; //para que no salta nada mas entrar en el path
             }
-
-            updateMovement(true);
-            setCheckpoint();
+            SetUpTransition(past_movement);
         }
     }
 
@@ -184,10 +225,10 @@ public class PlayerController : MonoBehaviour
  
             transform.localPosition += new Vector3(offset, 0, 0);
         }
-        else
+        else 
         {
 
-            UpdateDistance(-0.3f * speed);
+            if(distanceTraveled > 0) UpdateDistance(-0.3f * speed);
 
             transform.position = path.path.GetPointAtDistance(distanceTraveled, stop);
             pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
@@ -206,9 +247,6 @@ public class PlayerController : MonoBehaviour
                 break;
             case (movement.ClimbUp):
                 updateClimb();
-
-
-
                 break;
             case (movement.ClimbVert):
                 break;
@@ -218,11 +256,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void updateMovementTransition()
+    {
+        if(t < 1.0f)
+        {
+            t += speed * transition_speed * Time.deltaTime;
+            transform.position = Vector3.Lerp(start_position, end_position, t);
+            transform.rotation = Quaternion.Slerp(start_rotation, end_rotation, t);
+        }
+        else
+        {
+            t = 0;
+            updateMovement(true);
+            setCheckpoint();
+            movement_transition = false;
+        }
+    }
+
     private void FixedUpdate()
     {
         if (dying == -1 && path != null)
         {
-            updateMovement(false);
+            if (movement_transition)
+            {
+                updateMovementTransition();
+            }
+            else
+            {
+                updateMovement(false);
+            }
         }
     }
 

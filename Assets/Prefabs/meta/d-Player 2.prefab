@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 61990654468550121}
   - component: {fileID: 4078568356156889709}
   - component: {fileID: 6846711792414044203}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lookat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
