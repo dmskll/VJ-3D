@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         start_position = transform.position;
 
         transform.position = path.path.GetPointAtDistance(0);
-        transform.localPosition += new Vector3(offset, 0, 0);
+        transform.position += transform.TransformDirection(new Vector3(0, 0, offset));
         end_position = transform.position;
         transform.position = start_position;
 
@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
             transform.position = path.path.GetPointAtDistance(distanceTraveled);
             pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
             transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));
-            transform.localPosition += new Vector3(offset, 0, 0);
+            transform.position += transform.TransformDirection(new Vector3(0, 0, offset));
         }
     }
 
@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         transform.position = position;
-        transform.localPosition += new Vector3(offset, 0, 0);
+        transform.position += transform.TransformDirection(new Vector3(0, 0, offset));
         pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
         transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y, pathRotation.z));
         transform.Rotate(0, -90, 0);
@@ -222,8 +222,8 @@ public class PlayerController : MonoBehaviour
             transform.position = path.path.GetPointAtDistance(distanceTraveled, stop);
             pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
             transform.localRotation = Quaternion.Euler(new Vector3(pathRotation.x + 90, pathRotation.y + 180,90));
- 
-            transform.localPosition += new Vector3(offset, 0, 0);
+
+            transform.position += transform.TransformDirection(new Vector3(0, 0, offset));
         }
         else 
         {
@@ -234,7 +234,7 @@ public class PlayerController : MonoBehaviour
             pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
             transform.localRotation = Quaternion.Euler(new Vector3(pathRotation.x + 90, pathRotation.y + 180, 90));
 
-            transform.localPosition += new Vector3(offset, 0, 0);
+            transform.position += transform.TransformDirection(new Vector3(0, 0, offset));
         }
     }
     
