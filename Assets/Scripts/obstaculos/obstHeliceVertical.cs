@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class obstHeliceVertical : MonoBehaviour
 {
-    public float speed;
+    public float speed, start_delay;
 
 
     // Start is called before the first frame update
@@ -16,6 +16,10 @@ public class obstHeliceVertical : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0, speed * Time.deltaTime, 0));
+        if (start_delay > 0) start_delay -= Time.deltaTime;
+        else
+        {
+            transform.Rotate(new Vector3(0, speed * Time.deltaTime, 0));
+        }
     }
 }

@@ -11,7 +11,7 @@ public class MuslitoScript : MonoBehaviour
     public MuslitoType mus;
     private Vector3 posIni, posFin;
     private float distance, distance_traveled;
-
+    public float start_delay;
     private bool direction;
 
     // Start is called before the first frame update
@@ -44,43 +44,51 @@ public class MuslitoScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mus == MuslitoType.boomerang) {
-            if (direction)
+        if (start_delay > 0) start_delay -= Time.deltaTime;
+        else
+        {
+            if (mus == MuslitoType.boomerang)
             {
-                if (!nogiro) transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * 360));
+                if (direction)
+                {
+                    if (!nogiro) transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * 360));
+                    gameObject.transform.position += DirectionNormalized * velocidad * Time.deltaTime;
+                    distance_traveled += velocidad * Time.deltaTime;
+                    if (distance_traveled > distance)
+                    {
+                        direction = !direction;
+                    }
+                }
+                else
+                {
+
+
+                    if (!nogiro) transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * -360));
+                    gameObject.transform.position -= DirectionNormalized * velocidad * Time.deltaTime;
+                    distance_traveled -= velocidad * Time.deltaTime;
+
+                    if (distance_traveled < 0)
+                    {
+                        direction = !direction;
+                    }
+                }
+            }
+            else
+            {
+
+                transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * 360));
                 gameObject.transform.position += DirectionNormalized * velocidad * Time.deltaTime;
                 distance_traveled += velocidad * Time.deltaTime;
                 if (distance_traveled > distance)
                 {
-                    direction = !direction;
+                    distance_traveled = 0;
+                    transform.position = posIni;
                 }
+
             }
-            else {
 
 
-                if(!nogiro) transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * -360));
-                gameObject.transform.position -= DirectionNormalized * velocidad * Time.deltaTime;
-                distance_traveled -= velocidad * Time.deltaTime;
 
-                if (distance_traveled < 0)
-                {
-                    direction = !direction;
-                }
-            }
         }
-        else {
-
-            transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * 360));
-            gameObject.transform.position += DirectionNormalized * velocidad * Time.deltaTime;
-            distance_traveled += velocidad * Time.deltaTime;
-            if (distance_traveled > distance) {
-                distance_traveled = 0;
-                transform.position = posIni;
-            }
-            
-        }
-
-
-
     }
 }
