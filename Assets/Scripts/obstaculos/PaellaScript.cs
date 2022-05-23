@@ -7,6 +7,8 @@ using UnityEngine;
 public class PaellaScript : MonoBehaviour
 {
     public float fallSpeed, liftSpeed;
+    public AudioSource bonkSource;
+    public AudioClip bonkSound;
     private bool falling;
     private float rotating_progress;
     public float start_delay;
@@ -26,7 +28,10 @@ public class PaellaScript : MonoBehaviour
         {
             if (falling)
             {
-                if (rotating_progress <= 0) falling = false;
+                if (rotating_progress <= 0) {
+                    falling = false;
+                    bonkSource.PlayOneShot(bonkSound);
+                }
                 else
                 {
                     transform.Rotate(new Vector3(-Time.deltaTime * fallSpeed, 0, 0));
