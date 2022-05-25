@@ -11,7 +11,7 @@ public struct checkpoint
     //el tipo de camino??
 }
 
-public enum movement { Run, ClimbUp, ClimbVert, Slide};
+public enum movement { Run, ClimbUp, ClimbVert, Slide, Jump};
 public class PlayerController : MonoBehaviour
 {
     public float offset;
@@ -132,6 +132,8 @@ public class PlayerController : MonoBehaviour
                 return movement.Run;
             case ("ClimbPath"):
                 return movement.ClimbUp;
+            case ("JumpPath"):
+                return movement.Jump;
         }
         return movement.Run;
     }
@@ -238,6 +240,17 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    void updateJump()
+    {
+        UpdateDistance(speed * 5f);
+
+        transform.position = path.path.GetPointAtDistance(distanceTraveled);
+        pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
+        transform.rotation = Quaternion.Euler(new Vector3(0, pathRotation.y, pathRotation.z));
+        transform.Rotate(0, -90, 0);
+        transform.position += transform.TransformDirection(new Vector3(0, 0, offset));
+    }
+
     private void updateMovement(bool force)
     {
         switch (actual_movement)
@@ -252,6 +265,9 @@ public class PlayerController : MonoBehaviour
                 break;
             case (movement.Slide):
                 updateSlide();
+                break;
+            case (movement.Jump):
+                updateJump();
                 break;
         }
     }
