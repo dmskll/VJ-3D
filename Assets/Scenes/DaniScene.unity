@@ -2007,31 +2007,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1522577301693929958, guid: 7641ff3d8756c25499785c9660526b14,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.7882767
-      objectReference: {fileID: 0}
-    - target: {fileID: 1522577301693929958, guid: 7641ff3d8756c25499785c9660526b14,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1.3411512
-      objectReference: {fileID: 0}
-    - target: {fileID: 1522577301693929958, guid: 7641ff3d8756c25499785c9660526b14,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 7.1965456
-      objectReference: {fileID: 0}
-    - target: {fileID: 1522577301693929958, guid: 7641ff3d8756c25499785c9660526b14,
-        type: 3}
-      propertyPath: m_Center.z
-      value: -3.7097626
-      objectReference: {fileID: 0}
-    - target: {fileID: 1522577301693929958, guid: 7641ff3d8756c25499785c9660526b14,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2262196636958278194, guid: 7641ff3d8756c25499785c9660526b14,
         type: 3}
       propertyPath: m_Name
