@@ -9,6 +9,12 @@ public class ObstHeliceHorizontal : MonoBehaviour
 
     private Transform b1_t, b2_t, g_t;
     private float stop_timer;
+
+
+    public AudioSource gearsSource;
+    public AudioClip gearsSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,12 +46,15 @@ public class ObstHeliceHorizontal : MonoBehaviour
                 //es dificil que justo cuadre con el modulo de 180 
                 if (g_t.rotation.eulerAngles.y % 180 < 1.3)
                 {
+                    //stop
+                    gearsSource.Stop();
                     stop_timer = stop_duration;
                 }
             }
             else
             {
                 stop_timer -= 1;
+                if (stop_timer < 0) gearsSource.PlayOneShot(gearsSound); //resume
             }
         }
 

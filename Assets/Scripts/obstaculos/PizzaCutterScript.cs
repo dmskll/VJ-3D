@@ -12,6 +12,11 @@ public class PizzaCutterScript : MonoBehaviour
     private float velocity;
     public float start_delay;
 
+
+    public AudioSource whooshSource;
+    public AudioClip whooshSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +27,24 @@ public class PizzaCutterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (start_delay > 0) start_delay -= Time.deltaTime;
+        if (start_delay > 0) {
+            start_delay -= Time.deltaTime; 
+        }
         else
         {
             angle += velocity * Time.deltaTime;
-            if (angle < 0) velocity += gravity * Time.deltaTime;
-            else velocity -= gravity * Time.deltaTime;
 
+            if (angle < 0)
+            {
+                velocity += gravity * Time.deltaTime;
+                if (angle + velocity* Time.deltaTime > 0) whooshSource.PlayOneShot(whooshSound);
+            }
+            else
+            {
+                velocity -= gravity * Time.deltaTime;
+
+                if (angle + velocity * Time.deltaTime < 0) whooshSource.PlayOneShot(whooshSound);
+            }
             transform.Rotate(new Vector3(velocity * Time.deltaTime, 0, 0));
         }
     }
