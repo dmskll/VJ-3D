@@ -21,6 +21,8 @@ public class ProgressController : MonoBehaviour
     public bool start = false;
     bool readyp1, readyp2 = false;
 
+    public circleController circle1, circle2;
+
     void Awake()
     {
         if(instance == null)
@@ -100,12 +102,17 @@ public class ProgressController : MonoBehaviour
         if(!start)
         {
             readyp1 = Input.GetKey(KeyCode.Space);
+            circle1.setReady(readyp1);
+
             readyp2 = Input.GetKey(KeyCode.Return);
-            start = readyp1 & readyp2;
-        }
-        else
-        {
-            Debug.Log("deb");
+            circle2.setReady(readyp2);
+
+            if(readyp1 & readyp2)
+            {
+                start = true;
+                circle1.setStart();
+                circle2.setStart();
+            }
         }
     }
 
