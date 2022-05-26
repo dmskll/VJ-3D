@@ -18,6 +18,9 @@ public class ProgressController : MonoBehaviour
     public RectTransform bar_end, bar_start, bar_p1, bar_p2;
     float distanceUI, preogressUI;
 
+    public bool start = false;
+    bool readyp1, readyp2 = false;
+
     void Awake()
     {
         if(instance == null)
@@ -94,9 +97,22 @@ public class ProgressController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!start)
+        {
+            readyp1 = Input.GetKey(KeyCode.Space);
+            readyp2 = Input.GetKey(KeyCode.Return);
+            start = readyp1 & readyp2;
+        }
+        else
+        {
+            Debug.Log("deb");
+        }
     }
 
+    void setReady(string p)
+    {
+
+    }
 
     void FixedUpdate()
     {

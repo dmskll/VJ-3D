@@ -8,7 +8,7 @@ public struct checkpoint
     public float distance;
     public PathCreator path;
     public float progress;
-    //el tipo de camino??
+    public movement mov;
 }
 
 public enum movement { Run, ClimbUp, ClimbVert, Slide, Jump};
@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
         check_point.distance = distanceTraveled;
         check_point.path = path;
         check_point.progress = totaldistanceTraveled;
+        check_point.mov = actual_movement;
     }
 
     public void SetUpTransition(movement past_movement)
@@ -109,7 +110,6 @@ public class PlayerController : MonoBehaviour
     public void SetPath(PathCreator new_path, string s)
     {
         if (new_path != path) {
-
             path = new_path;
             distanceTraveled = 0;
             var past_movement = actual_movement;
@@ -142,6 +142,7 @@ public class PlayerController : MonoBehaviour
         path = check_point.path;
         distanceTraveled = check_point.distance;
         totaldistanceTraveled = check_point.progress;
+        actual_movement = check_point.mov;
 
         updateMovement(true);
         rat.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -284,7 +285,7 @@ public class PlayerController : MonoBehaviour
         {
             t = 0;
             updateMovement(true);
-            setCheckpoint();
+            if(actual_movement != movement.Jump) setCheckpoint();
             movement_transition = false;
         }
     }
@@ -320,7 +321,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moving = InteractionKeyDown() && !end;
+
+        moving = InteractionKeyDown() && !end && ProgressController.instance.start;
+        
         if (Input.GetKey(KeyCode.R))
         {
             reSpawn();
