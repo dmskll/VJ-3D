@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
 
-    public GameObject Logo, StartButton, CreditsButton, BackButton, CreditsText, Instructions;
+    public GameObject Logo, StartButton, CreditsButton, BackButton, CreditsText, MusicButton, Instructions, MusicCredits;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +40,7 @@ public class MenuScript : MonoBehaviour
         Logo.SetActive(false);
         BackButton.SetActive(true);
         CreditsText.SetActive(true);
+        MusicButton.SetActive(true);
     }
 
     public void ClickBack()
@@ -49,6 +50,22 @@ public class MenuScript : MonoBehaviour
         Logo.SetActive(true);
         BackButton.SetActive(false);
         CreditsText.SetActive(false);
+        MusicButton.SetActive(false);
+
+    }
+
+    public void GoBackMusic() {
+        MusicCredits.SetActive(false);
+        BackButton.SetActive(true);
+        CreditsText.SetActive(true);
+        MusicButton.SetActive(true);
+    }
+    public void PlaylistClick()
+    {
+        BackButton.SetActive(false);
+        CreditsText.SetActive(false);
+        MusicButton.SetActive(false);
+        MusicCredits.SetActive(true);
 
     }
 
