@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 1;
     float distanceTraveled = -1;
     float totaldistanceTraveled;
-
+    public AudioSource boingSource;
+    public AudioClip boingSound;
     PathCreator path;
 
     EndOfPathInstruction stop = EndOfPathInstruction.Stop;
@@ -352,7 +353,7 @@ public class PlayerController : MonoBehaviour
 
                 float randX = Random.Range(-300, 300);
                 float randZ = Random.Range(-300, 300);
-
+                boingSource.PlayOneShot(boingSound);
                 RG.AddForce(deathJump + new Vector3 (randX,0,randZ));
                 RG.AddTorque(new Vector3(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300)));
                 dying = 0;
