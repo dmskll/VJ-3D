@@ -16,6 +16,7 @@ public class ProgressController : MonoBehaviour
     float p2_progress = 0;
 
     public RectTransform bar_end, bar_start, bar_p1, bar_p2;
+    public GameObject crownP1, crownP2;
     float distanceUI, preogressUI;
 
     public bool start = false;
@@ -131,6 +132,19 @@ public class ProgressController : MonoBehaviour
         percent = p2_progress * 100 / totaldistance;
         preogressUI = percent * distanceUI / 100;
         bar_p2.position = new Vector3(bar_p2.position.x, bar_start.position.y + preogressUI, bar_p2.position.z);
+        if (p1_progress > p2_progress)
+        {
+            crownP1.SetActive(true);
+            crownP2.SetActive(false);
+        }
+        else
+        {
+            crownP2.SetActive(true);
+            crownP1.SetActive(false);
+
+        }
+
+
 
     }
 }
