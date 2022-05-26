@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RopeRoot : MonoBehaviour
 {
+    int layertail;
 
     public float RigidbodyMass = 1f;
     public float ColliderRadius = 0.1f;
@@ -25,6 +26,8 @@ public class RopeRoot : MonoBehaviour
         CopySource = new List<Transform>();
         CopyDestination = new List<Transform>();
 
+        layertail = LayerMask.NameToLayer("tail");
+        RigidBodyContainer.layer = layertail;
         //add children
         AddChildren(transform);
     }
@@ -36,8 +39,8 @@ public class RopeRoot : MonoBehaviour
             var child = parent.GetChild(i);
             var representative = new GameObject(child.gameObject.name);
 
-            int layertail = LayerMask.NameToLayer("tail");
-            gameObject.layer = layertail;
+
+            representative.gameObject.layer = layertail;
             representative.transform.parent = RigidBodyContainer.transform;
 
             //rigidbody
