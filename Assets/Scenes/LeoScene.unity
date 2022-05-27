@@ -324,6 +324,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: d-Player 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4295896013541099292, guid: 8cecb1140eeb3964b971921382e13eff,
+        type: 3}
+      propertyPath: RotationOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4295896013541099292, guid: 8cecb1140eeb3964b971921382e13eff,
+        type: 3}
+      propertyPath: RotationOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4295896013541099292, guid: 8cecb1140eeb3964b971921382e13eff,
+        type: 3}
+      propertyPath: RotationOffset.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cecb1140eeb3964b971921382e13eff, type: 3}
 --- !u!4 &1549012848 stripped

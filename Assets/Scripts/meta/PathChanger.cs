@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
+
 public class PathChanger : MonoBehaviour
 {
+
     //gestiona el cambio de paths
+    public CameraScript.CameraState cam_state;
     public PathCreator path_in, path_out;
     private PlayerController pc1, pc2;
 
@@ -26,10 +29,12 @@ public class PathChanger : MonoBehaviour
         if (other.gameObject.tag.Equals("player1"))
         {
             pc1.SetPath(path_in, path_in.tag);
+            ProgressController.instance.camera_p1.setState(cam_state);
         }
         else if(other.gameObject.tag.Equals("player2"))
         {
             pc2.SetPath(path_in, path_in.tag);
+            ProgressController.instance.camera_p2.setState(cam_state);
         }
     }
 }

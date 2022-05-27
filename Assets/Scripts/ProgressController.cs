@@ -4,6 +4,7 @@ using UnityEngine;
 using PathCreation;
 
 
+
 public class ProgressController : MonoBehaviour
 {
    // public static ProgressController instance = null;
@@ -23,6 +24,10 @@ public class ProgressController : MonoBehaviour
     bool readyp1, readyp2 = false;
 
     public circleController circle1, circle2;
+
+    public CameraScript camera_p1, camera_p2;
+
+
 
     void Awake()
     {
@@ -94,7 +99,9 @@ public class ProgressController : MonoBehaviour
     {
         CalculeTotalDistance();
         distanceUI = bar_end.position.y - bar_start.position.y;
-        //Debug.Log(totaldistance);
+
+        camera_p1 = GameObject.Find("virtual cameras 1").GetComponent<CameraScript>();
+        camera_p2 = GameObject.Find("virtual cameras 2").GetComponent<CameraScript>();
     }
 
     // Update is called once per frame
@@ -113,6 +120,8 @@ public class ProgressController : MonoBehaviour
                 start = true;
                 circle1.setStart();
                 circle2.setStart();
+                camera_p1.setState(CameraScript.CameraState.Back);
+                camera_p2.setState(CameraScript.CameraState.Back);
             }
         }
     }

@@ -7,6 +7,8 @@ public class RopeRoot : MonoBehaviour
 {
     int layertail;
 
+    public Transform player;
+
     public float RigidbodyMass = 1f;
     public float ColliderRadius = 0.1f;
     public float JointSpring = 0.1f;
@@ -76,8 +78,10 @@ public class RopeRoot : MonoBehaviour
     {
         for (int i = 0; i < CopySource.Count; i++)
         {
+            var RotationOffsetPlayer = new Vector3(90 - player.rotation.eulerAngles.z, 90 - player.rotation.eulerAngles.y, 0);
             CopyDestination[i].position = CopySource[i].position + PositionOffset;
-            CopyDestination[i].rotation = CopySource[i].rotation * Quaternion.Euler(RotationOffset);
+            //CopyDestination[i].rotation = CopySource[i].rotation * Quaternion.Euler(RotationOffset);
+            CopyDestination[i].rotation =  Quaternion.Euler(RotationOffsetPlayer);
         }
     }
 }
