@@ -93,10 +93,18 @@ public class PlayerController : MonoBehaviour
 
         start_rotation = transform.rotation;
 
+
+        if (past_movement == movement.Jump) rat_anim.SetBool("Catapult",false);
+        
+
         transition_speed = 50;
         pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
         switch (actual_movement)
         {
+
+            case (movement.Jump):
+                rat_anim.SetBool("Catapult",true);
+                break;
             case (movement.Run):
                 if(past_movement == movement.ClimbUp)
                     transition_speed = 10;
@@ -333,6 +341,8 @@ public class PlayerController : MonoBehaviour
     {
 
         moving = InteractionKeyDown() && !end && ProgressController.instance.start;
+
+        rat_anim.SetBool("Moving", moving);
         
         if (Input.GetKey(KeyCode.R))
         {
