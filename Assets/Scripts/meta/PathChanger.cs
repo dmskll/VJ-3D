@@ -14,8 +14,8 @@ public class PathChanger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pc1 = GameObject.FindGameObjectWithTag("player1").GetComponent<PlayerController>();
-        pc2 = GameObject.FindGameObjectWithTag("player2").GetComponent<PlayerController>();
+        pc1 = ProgressController.instance.player_1;
+        pc2 = ProgressController.instance.player_2;
     }
 
     // Update is called once per frame

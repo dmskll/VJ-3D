@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 1986150177944424167}
   - component: {fileID: 2025072188775554496}
   - component: {fileID: 2025072188775554499}
+  - component: {fileID: 3622971240717229943}
   m_Layer: 0
   m_Name: rat
   m_TagString: rat
@@ -108,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214821521529541725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.12, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5551306503700446038}
@@ -146,6 +147,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.3079255, y: 1.223866, z: 1.9926083}
   m_Center: {x: 0.3351469, y: 0.65620923, z: 0.06861209}
+--- !u!95 &3622971240717229943
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214821521529541725}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f870a72a1e54dd458f5bb7dc948e0ae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2025072189423843926
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +194,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025072189423843926}
-  m_LocalRotation: {x: 0, y: -0.5567017, z: 0, w: 0.8307125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 66.38, y: 0.05, z: 50.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -183,7 +203,7 @@ Transform:
   - {fileID: 1986150177944424167}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -67.656006, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2025072189423843927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +226,7 @@ MonoBehaviour:
   rat: {fileID: 1214821521529541725}
   jump_speed: 0
   jump_gravity: 0
+  rat_anim: {fileID: 3622971240717229943}
 --- !u!54 &255686105
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -975,9 +996,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06751f13881eaaf4985617a1c0e3ebb3, type: 3}
---- !u!4 &1114540723093948257 stripped
+--- !u!4 &114886107789597617 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2603607338049231655, guid: 06751f13881eaaf4985617a1c0e3ebb3,
+  m_CorrespondingSourceObject: {fileID: 3084494860989990903, guid: 06751f13881eaaf4985617a1c0e3ebb3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3122819686924721222}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2919439714812781472 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 276290806500556774, guid: 06751f13881eaaf4985617a1c0e3ebb3,
     type: 3}
   m_PrefabInstance: {fileID: 3122819686924721222}
   m_PrefabAsset: {fileID: 0}
@@ -993,15 +1020,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3122819686924721222}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &114886107789597617 stripped
+--- !u!4 &1114540723093948257 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3084494860989990903, guid: 06751f13881eaaf4985617a1c0e3ebb3,
-    type: 3}
-  m_PrefabInstance: {fileID: 3122819686924721222}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2919439714812781472 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 276290806500556774, guid: 06751f13881eaaf4985617a1c0e3ebb3,
+  m_CorrespondingSourceObject: {fileID: 2603607338049231655, guid: 06751f13881eaaf4985617a1c0e3ebb3,
     type: 3}
   m_PrefabInstance: {fileID: 3122819686924721222}
   m_PrefabAsset: {fileID: 0}

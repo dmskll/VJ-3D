@@ -9,8 +9,8 @@ public class EndController : MonoBehaviour
     private PlayerController pc1, pc2;
     void Start()
     {
-        pc1 = GameObject.FindGameObjectWithTag("player1").GetComponent<PlayerController>();
-        pc2 = GameObject.FindGameObjectWithTag("player2").GetComponent<PlayerController>();
+        pc1 = ProgressController.instance.player_1;
+        pc2 = ProgressController.instance.player_2;
     }
 
     // Update is called once per frame
@@ -18,11 +18,11 @@ public class EndController : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("player1"))
         {
-            pc1.setEnd();
+            ProgressController.instance.setEnd("player1");
         }
         else if (other.gameObject.tag.Equals("player2"))
         {
-            pc2.setEnd();
+            ProgressController.instance.setEnd("player2");
         }
     }
 }

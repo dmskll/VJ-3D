@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
     public enum CameraState { Back, Front, SideLeft, SideRight,  NearBack};
     public CameraState start_state;
     CameraState actual_state;
-    CinemachineVirtualCamera back, left, right, front;
+    CinemachineVirtualCamera back, left, right, front, nearback;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +17,7 @@ public class CameraScript : MonoBehaviour
         front = transform.Find("vcam front").gameObject.GetComponent<CinemachineVirtualCamera>();
         left = transform.Find("vcam left").gameObject.GetComponent<CinemachineVirtualCamera>();
         right = transform.Find("vcam right").gameObject.GetComponent<CinemachineVirtualCamera>();
-
+        nearback = transform.Find("vcam nearback").gameObject.GetComponent<CinemachineVirtualCamera>();
         setState(start_state);
 
     }
@@ -44,7 +44,7 @@ public class CameraScript : MonoBehaviour
                 right.enabled = false;
                 break;
             case (CameraState.NearBack):
-                back.enabled = false;
+                nearback.enabled = false;
                 break;
         }
 
@@ -63,7 +63,7 @@ public class CameraScript : MonoBehaviour
                 right.enabled = true;
                 break;
             case (CameraState.NearBack):
-                back.enabled = true;
+                nearback.enabled = true;
                 break;
         }
         actual_state = s;

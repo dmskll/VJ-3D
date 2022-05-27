@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     Quaternion end_rotation, start_rotation;
     float t = 0, transition_speed; //elapsed time lerp
 
+    public Animator rat_anim;
+
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +66,11 @@ public class PlayerController : MonoBehaviour
     public void setEnd()
     {
         end = true;
+    }
+
+    public void setDance()
+    {
+        rat_anim.SetTrigger("dance");
     }
 
     public void setCheckpoint()
@@ -140,6 +147,8 @@ public class PlayerController : MonoBehaviour
     }
     public void reSpawn()
     {
+        rat_anim.enabled = true;
+
         path = check_point.path;
         distanceTraveled = check_point.distance;
         totaldistanceTraveled = check_point.progress;
@@ -344,19 +353,30 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public void dieRat(bool respawn)
+    {
+        rat_anim.enabled = false;
+
+
+        RG.isKinematic = false;
+
+        float randX = Random.Range(-300, 300);
+        float randZ = Random.Range(-300, 300);
+
+        RG.AddForce(deathJump + new Vector3(randX, 0, randZ));
+        RG.AddTorque(new Vector3(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300)));
+        if(respawn) dying = 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Obstaculo"))
         {
             if (!godMode && dying == -1) {
-                RG.isKinematic = false;
 
-                float randX = Random.Range(-300, 300);
-                float randZ = Random.Range(-300, 300);
                 boingSource.PlayOneShot(boingSound);
-                RG.AddForce(deathJump + new Vector3 (randX,0,randZ));
-                RG.AddTorque(new Vector3(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300)));
-                dying = 0;
+                dieRat(true);
             }
         }
     }

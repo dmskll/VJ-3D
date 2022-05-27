@@ -26,7 +26,7 @@ public class ProgressController : MonoBehaviour
     public circleController circle1, circle2;
 
     public CameraScript camera_p1, camera_p2;
-
+    public PlayerController player_1, player_2;
 
 
     void Awake()
@@ -38,6 +38,25 @@ public class ProgressController : MonoBehaviour
         else if (instance != this)
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void setEnd(string player)
+    {
+        player_1.setEnd();
+        player_2.setEnd();
+        
+        if(player.Equals("player1"))
+        {
+            player_2.dieRat(false);
+            player_1.setDance();
+            camera_p1.setState(CameraScript.CameraState.NearBack);
+        }   
+        else if(player.Equals("player2"))
+        {
+            player_1.dieRat(false);
+            player_2.setDance();
+            camera_p2.setState(CameraScript.CameraState.NearBack);
         }
     }
 
@@ -102,6 +121,9 @@ public class ProgressController : MonoBehaviour
 
         camera_p1 = GameObject.Find("virtual cameras 1").GetComponent<CameraScript>();
         camera_p2 = GameObject.Find("virtual cameras 2").GetComponent<CameraScript>();
+
+        player_1 = GameObject.FindGameObjectWithTag("player1").GetComponent<PlayerController>();
+        player_2 = GameObject.FindGameObjectWithTag("player2").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
