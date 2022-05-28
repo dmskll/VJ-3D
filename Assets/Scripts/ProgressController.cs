@@ -29,7 +29,7 @@ public class ProgressController : MonoBehaviour
     float EndMenuTimer = -1;
     public GameObject EndMenu;
     public GameObject BlueWinsText, WhiteWinsText, BlueLosesText, WhiteLosesText;
-    public ParticleSystem confetti1, confetti2;
+    ParticleSystem confetti1, confetti2;
 
 
     public circleController circle1, circle2;
@@ -140,6 +140,9 @@ public class ProgressController : MonoBehaviour
 
         player_1 = GameObject.FindGameObjectWithTag("player1").GetComponent<PlayerController>();
         player_2 = GameObject.FindGameObjectWithTag("player2").GetComponent<PlayerController>();
+
+        confetti1 = GameObject.Find("Confetti (1)").GetComponent<ParticleSystem>();
+        confetti2 = GameObject.Find("Confetti").GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
