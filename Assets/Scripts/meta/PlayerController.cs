@@ -156,6 +156,9 @@ public class PlayerController : MonoBehaviour
     public void reSpawn()
     {
         rat_anim.enabled = true;
+        if (actual_movement.Equals(movement.Jump))
+            rat_anim.SetBool("Catapult", false);
+
 
         path = check_point.path;
         distanceTraveled = check_point.distance;
