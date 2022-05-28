@@ -12,6 +12,8 @@ public class PaellaScript : MonoBehaviour
     private bool falling;
     private float rotating_progress;
     public float start_delay;
+
+    public ParticleSystem smoke;
     
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class PaellaScript : MonoBehaviour
                 if (rotating_progress <= 0) {
                     falling = false;
                     bonkSource.PlayOneShot(bonkSound);
+                    smoke.Play();
                 }
                 else
                 {
