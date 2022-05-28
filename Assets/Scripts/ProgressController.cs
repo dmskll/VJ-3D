@@ -29,7 +29,7 @@ public class ProgressController : MonoBehaviour
     float EndMenuTimer = -1;
     public GameObject EndMenu;
     public GameObject BlueWinsText, WhiteWinsText, BlueLosesText, WhiteLosesText;
-
+    public ParticleSystem confetti1, confetti2;
 
 
     public circleController circle1, circle2;
@@ -52,6 +52,9 @@ public class ProgressController : MonoBehaviour
 
     public void setEnd(string player)
     {
+
+        confetti1.Play();
+        confetti2.Play();
         player_1.setEnd();
         player_2.setEnd();
 
