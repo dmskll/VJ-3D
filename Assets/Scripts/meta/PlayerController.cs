@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     float t = 0, transition_speed; //elapsed time lerp
 
     public Animator rat_anim;
+    public ParticleSystem stars, flysmoke;
+    
 
 
     // Start is called before the first frame update
@@ -95,7 +97,11 @@ public class PlayerController : MonoBehaviour
         start_rotation = transform.rotation;
 
 
-        if (past_movement == movement.Jump) rat_anim.SetBool("Catapult",false);
+        if (past_movement == movement.Jump)
+        {
+            rat_anim.SetBool("Catapult", false);
+            flysmoke.Stop();
+        }
         
 
         transition_speed = 50;
@@ -105,6 +111,7 @@ public class PlayerController : MonoBehaviour
 
             case (movement.Jump):
                 rat_anim.SetBool("Catapult",true);
+                flysmoke.Play();
                 break;
             case (movement.Run):
                 if(past_movement == movement.ClimbUp)
@@ -160,6 +167,7 @@ public class PlayerController : MonoBehaviour
         if (actual_movement.Equals(movement.Jump))
             rat_anim.SetBool("Catapult", false);
 
+        flysmoke.Stop();    
 
         path = check_point.path;
         distanceTraveled = check_point.distance;
@@ -377,6 +385,8 @@ public class PlayerController : MonoBehaviour
 
     public void dieRat(bool respawn)
     {
+        stars.Play();
+        flysmoke.Play();
         rat_anim.enabled = false;
 
 
@@ -395,7 +405,6 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Obstaculo"))
         {
             if (!godMode && dying == -1) {
-
                 boingSource.PlayOneShot(boingSound);
                 dieRat(true);
             }
