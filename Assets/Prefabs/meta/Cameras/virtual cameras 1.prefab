@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: -6.0555973, y: 6.017601, z: 15.080338}
+  m_FollowOffset: {x: -19.03, y: 5.8, z: 5.6}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: -6.0859237, y: 6.01795, z: -19.917847}
+  m_FollowOffset: {x: -19.03, y: 5.8, z: -5.6}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -924,7 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d116ccccd6c204db4e5a9852ca26c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start_state: 4
+  start_state: 0
 --- !u!1 &5498111427946003989
 GameObject:
   m_ObjectHideFlags: 0

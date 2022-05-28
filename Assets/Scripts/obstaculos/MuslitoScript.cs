@@ -4,7 +4,7 @@ using UnityEngine;
 public class MuslitoScript : MonoBehaviour
 {
     public GameObject gameObjInicio, gameObjFinal;
-    public float velocidad;
+    public float velocidad, velocidad_giro;
     public bool nogiro;
     private Vector3 DirectionNormalized;
     public enum MuslitoType { Tp_al_inicio, boomerang };
@@ -14,6 +14,8 @@ public class MuslitoScript : MonoBehaviour
     public float start_delay;
     private bool direction;
 
+    public float offset;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +24,9 @@ public class MuslitoScript : MonoBehaviour
         posFin = gameObjFinal.GetComponent<Transform>().position;
         gameObject.transform.position = posIni;
         DirectionNormalized = Vector3.Normalize(posFin - posIni);
+        gameObject.transform.position += DirectionNormalized * offset;
 
-
-        distance = Vector3.Distance(posFin,posIni);
+       distance = Vector3.Distance(posFin,posIni) + offset;
         distance_traveled = 0;
         // Convert to -180 to +180 degrees
 	if(!nogiro)
@@ -51,7 +53,7 @@ public class MuslitoScript : MonoBehaviour
             {
                 if (direction)
                 {
-                    if (!nogiro) transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * 360));
+                    if (!nogiro) transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad_giro * 0.8f * 360));
                     gameObject.transform.position += DirectionNormalized * velocidad * Time.deltaTime;
                     distance_traveled += velocidad * Time.deltaTime;
                     if (distance_traveled > distance)
@@ -63,7 +65,7 @@ public class MuslitoScript : MonoBehaviour
                 {
 
 
-                    if (!nogiro) transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * -360));
+                    if (!nogiro) transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad_giro * -360));
                     gameObject.transform.position -= DirectionNormalized * velocidad * Time.deltaTime;
                     distance_traveled -= velocidad * Time.deltaTime;
 
@@ -76,7 +78,7 @@ public class MuslitoScript : MonoBehaviour
             else
             {
 
-                transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad * 360));
+                transform.Rotate(new Vector3(0, 0, Time.deltaTime * velocidad_giro * 360));
                 gameObject.transform.position += DirectionNormalized * velocidad * Time.deltaTime;
                 distance_traveled += velocidad * Time.deltaTime;
                 if (distance_traveled > distance)

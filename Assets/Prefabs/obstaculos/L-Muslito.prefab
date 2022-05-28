@@ -155,8 +155,10 @@ MonoBehaviour:
   gameObjInicio: {fileID: 1040428705017947047}
   gameObjFinal: {fileID: 1040428706519596783}
   velocidad: 10
+  velocidad_giro: 4
   nogiro: 0
   mus: 1
+  start_delay: 0
 --- !u!1 &1040428706519596783
 GameObject:
   m_ObjectHideFlags: 0
