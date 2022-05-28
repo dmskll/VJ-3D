@@ -23,6 +23,15 @@ public class ProgressController : MonoBehaviour
     public bool start = false;
     bool readyp1, readyp2 = false;
 
+
+
+    bool blueWins;
+    float EndMenuTimer = -1;
+    public GameObject EndMenu;
+    public GameObject BlueWinsText, WhiteWinsText, BlueLosesText, WhiteLosesText;
+
+
+
     public circleController circle1, circle2;
 
     public CameraScript camera_p1, camera_p2;
@@ -45,15 +54,19 @@ public class ProgressController : MonoBehaviour
     {
         player_1.setEnd();
         player_2.setEnd();
-        
+
+        EndMenuTimer = 5;
+
         if(player.Equals("player1"))
         {
+            blueWins = true;
             player_2.dieRat(false);
             player_1.setDance();
             camera_p1.setState(CameraScript.CameraState.NearBack);
         }   
         else if(player.Equals("player2"))
         {
+            blueWins = false;
             player_1.dieRat(false);
             player_2.setDance();
             camera_p2.setState(CameraScript.CameraState.NearBack);
@@ -129,6 +142,27 @@ public class ProgressController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (EndMenuTimer != -1)
+        {
+            EndMenuTimer -= Time.deltaTime;
+            if (EndMenuTimer < 0) {
+                EndMenuTimer = -1;
+                EndMenu.SetActive(true);
+                if (blueWins) 
+                {
+                    BlueWinsText.SetActive(true);
+                    WhiteLosesText.SetActive(true);
+                }
+                else
+                {
+                    BlueLosesText.SetActive(true);
+                    WhiteWinsText.SetActive(true);
+                }
+                gameObject.SetActive(false);
+            }
+        }
+       
+
         if(!start)
         {
             readyp1 = Input.GetKey(KeyCode.Space);
@@ -155,6 +189,7 @@ public class ProgressController : MonoBehaviour
 
     void FixedUpdate()
     {
+
 
         float percent = p1_progress * 100 / totaldistance;
         float preogressUI = percent * distanceUI / 100;

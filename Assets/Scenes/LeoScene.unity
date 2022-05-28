@@ -440,6 +440,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 85077683605537220, guid: b2258a1ed1ca8444ead7d55c9f47104c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5441170250139584295, guid: b2258a1ed1ca8444ead7d55c9f47104c,
         type: 3}
       propertyPath: paths.Array.data[0]
@@ -513,6 +518,11 @@ PrefabInstance:
     - target: {fileID: 5441170250672913118, guid: b2258a1ed1ca8444ead7d55c9f47104c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515929999498502534, guid: b2258a1ed1ca8444ead7d55c9f47104c,
+        type: 3}
+      propertyPath: m_AudioOutputMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
