@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7160834513156275252
 Transform:
@@ -57,7 +57,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2460547875158646609
 Transform:
@@ -150,7 +150,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2715431142003774587
 Transform:
@@ -234,7 +234,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6315309723894089376
 Transform:
@@ -416,6 +416,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: corn
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0a9e4725f227b6d3a94fbfb1035c09b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a9e4725f227b6d3a94fbfb1035c09b6, type: 3}
 --- !u!4 &886003511744946461 stripped
@@ -520,6 +525,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bottleOil
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0537abf457b5d99f785ae3c85998cb52,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0537abf457b5d99f785ae3c85998cb52, type: 3}
@@ -626,6 +636,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: barrel
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f51933c4f0c797d50a365a05fdd0b9b7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f51933c4f0c797d50a365a05fdd0b9b7, type: 3}
 --- !u!4 &3341235532306604727 stripped
@@ -725,6 +740,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: banana
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a5c44d83967f0e6158dedb2ea51af16d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5c44d83967f0e6158dedb2ea51af16d, type: 3}
@@ -826,6 +846,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: ab064bcd7a813974097f1f3e2aca1573, type: 2}
+    - target: {fileID: -2514649751388021329, guid: fcf24e0a0abcb052280f0727600f9a6a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -1023025516197406309, guid: fcf24e0a0abcb052280f0727600f9a6a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -835,6 +860,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: avocadoHalf
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fcf24e0a0abcb052280f0727600f9a6a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcf24e0a0abcb052280f0727600f9a6a, type: 3}
@@ -936,6 +966,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: broccoli
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8621867273557236b8eb2beb85a38b06,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8621867273557236b8eb2beb85a38b06, type: 3}
 --- !u!4 &5479569108622982700 stripped
@@ -1030,6 +1065,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c3d299ece08488d5bec97f4e7d62ebd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c3d299ece08488d5bec97f4e7d62ebd, type: 3}
