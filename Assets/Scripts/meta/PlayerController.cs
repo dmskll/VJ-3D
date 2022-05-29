@@ -48,9 +48,10 @@ public class PlayerController : MonoBehaviour
     float t = 0, transition_speed; //elapsed time lerp
 
     public Animator rat_anim;
-    public ParticleSystem stars, flysmoke;
 
     public GameObject[] tail = new GameObject[4];
+    public ParticleSystem stars, flysmoke, fallSmoke;
+    
 
 
     // Start is called before the first frame update
@@ -270,7 +271,9 @@ public class PlayerController : MonoBehaviour
 
         if (moving)
         {
+            if (fallSmoke.isPlaying) fallSmoke.Stop();
             UpdateDistance(speed);
+
 
             transform.position = path.path.GetPointAtDistance(distanceTraveled, stop);
             pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
@@ -280,8 +283,8 @@ public class PlayerController : MonoBehaviour
         }
         else 
         {
-
-            if(distanceTraveled > 0) UpdateDistance(-0.3f * speed);
+            if (fallSmoke.isStopped) fallSmoke.Play();
+            if (distanceTraveled > 0) UpdateDistance(-0.3f * speed);
 
             transform.position = path.path.GetPointAtDistance(distanceTraveled, stop);
             pathRotation = path.path.GetRotationAtDistance(distanceTraveled).eulerAngles;
@@ -371,8 +374,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         moving = InteractionKeyDown() && !end && ProgressController.instance.start;
+
+
+
+
 
         rat_anim.SetBool("Moving", moving);
         
