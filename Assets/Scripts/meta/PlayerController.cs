@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     float t = 0, transition_speed; //elapsed time lerp
 
     public Animator rat_anim;
+
+    public GameObject[] tail = new GameObject[4];
     public ParticleSystem stars, flysmoke, fallSmoke;
     
 
@@ -62,8 +64,25 @@ public class PlayerController : MonoBehaviour
         dying = -1;
         //updateMovement();
         RG = rat.GetComponent<Rigidbody>();
+        takeOutTail();
 
         //actual_movement = movment.Run;
+    }
+
+    void takeOutTail()
+    {
+        for(int i = 0; i < tail.Length; i++)
+        {
+            tail[i].transform.parent = transform.parent;
+        }
+    }
+
+    void putTail()
+    {
+        for (int i = 0; i < tail.Length; i++)
+        {
+            tail[i].transform.parent = transform;
+        }
     }
 
     public void setEnd()
@@ -110,10 +129,12 @@ public class PlayerController : MonoBehaviour
         {
 
             case (movement.Jump):
+                putTail();
                 rat_anim.SetBool("Catapult",true);
                 flysmoke.Play();
                 break;
             case (movement.Run):
+                takeOutTail();
                 if(past_movement == movement.ClimbUp)
                     transition_speed = 10;
                 transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));
@@ -163,6 +184,7 @@ public class PlayerController : MonoBehaviour
     }
     public void reSpawn()
     {
+        putTail();
         rat_anim.enabled = true;
         if (actual_movement.Equals(movement.Jump))
             rat_anim.SetBool("Catapult", false);
@@ -175,6 +197,7 @@ public class PlayerController : MonoBehaviour
         actual_movement = check_point.mov;
 
         updateMovement(true);
+        takeOutTail();
         rat.transform.localRotation = Quaternion.Euler(0, 0, 0);
         rat.transform.localPosition = new Vector3(0, 0, 0);
     }
