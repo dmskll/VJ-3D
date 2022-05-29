@@ -7,6 +7,8 @@ public class jumpController : MonoBehaviour
 
     public Animator espatula1, espatula2;
 
+    public AudioSource throwSource;
+    public AudioClip throwSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +25,12 @@ public class jumpController : MonoBehaviour
     {
         if(other.CompareTag("player1"))
         {
+            throwSource.PlayOneShot(throwSound);
             espatula1.SetTrigger("trigger");
         }
         else if (other.CompareTag("player2"))
         {
+            throwSource.PlayOneShot(throwSound);
             espatula2.SetTrigger("trigger");
         }
     }
