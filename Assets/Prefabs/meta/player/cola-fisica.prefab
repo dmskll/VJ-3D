@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7289e570f0ab7344acb52ca937d2507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   RigidbodyMass: 1
   ColliderRadius: 0.3
   JointSpring: 0.3

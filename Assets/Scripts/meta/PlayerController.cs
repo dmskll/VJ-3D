@@ -49,7 +49,8 @@ public class PlayerController : MonoBehaviour
 
     public Animator rat_anim;
     public ParticleSystem stars, flysmoke;
-    
+
+    public GameObject[] tail = new GameObject[4];
 
 
     // Start is called before the first frame update
@@ -62,8 +63,25 @@ public class PlayerController : MonoBehaviour
         dying = -1;
         //updateMovement();
         RG = rat.GetComponent<Rigidbody>();
+        takeOutTail();
 
         //actual_movement = movment.Run;
+    }
+
+    void takeOutTail()
+    {
+        for(int i = 0; i < tail.Length; i++)
+        {
+            tail[i].transform.parent = transform.parent;
+        }
+    }
+
+    void putTail()
+    {
+        for (int i = 0; i < tail.Length; i++)
+        {
+            tail[i].transform.parent = transform;
+        }
     }
 
     public void setEnd()
@@ -163,6 +181,7 @@ public class PlayerController : MonoBehaviour
     }
     public void reSpawn()
     {
+        putTail();
         rat_anim.enabled = true;
         if (actual_movement.Equals(movement.Jump))
             rat_anim.SetBool("Catapult", false);
@@ -175,6 +194,7 @@ public class PlayerController : MonoBehaviour
         actual_movement = check_point.mov;
 
         updateMovement(true);
+        takeOutTail();
         rat.transform.localRotation = Quaternion.Euler(0, 0, 0);
         rat.transform.localPosition = new Vector3(0, 0, 0);
     }
