@@ -129,10 +129,12 @@ public class PlayerController : MonoBehaviour
         {
 
             case (movement.Jump):
+                putTail();
                 rat_anim.SetBool("Catapult",true);
                 flysmoke.Play();
                 break;
             case (movement.Run):
+                takeOutTail();
                 if(past_movement == movement.ClimbUp)
                     transition_speed = 10;
                 transform.rotation = Quaternion.Euler(new Vector3(pathRotation.x, pathRotation.y - 90, 0));
