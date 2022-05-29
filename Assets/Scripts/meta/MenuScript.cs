@@ -30,7 +30,7 @@ public class MenuScript : MonoBehaviour
     }
     public void ClickContinue()
     {
-        SceneManager.LoadScene("DaniScene");
+        SceneManager.LoadScene(1);
 
     }
     public void ClickCredits()
