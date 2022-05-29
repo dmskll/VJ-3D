@@ -15297,7 +15297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5e63cacc5619c4eb066c53826f771e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 0
+  offset: -1
   speed: 0.1
   boingSource: {fileID: 8732037239020723433}
   boingSound: {fileID: 8300000, guid: 286aa387d06d5ea40858e40d44187ade, type: 3}
