@@ -14956,4 +14956,4 @@ MonoBehaviour:
   anim: {fileID: 1589991161}
   columna_humo: {fileID: 6111499894124165216}
   humo_idle: {fileID: 1220303947}
-  stop_duration: 5
+  stop_duration: 3
