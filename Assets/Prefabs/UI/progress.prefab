@@ -812,17 +812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f461dd7cc50ac94fb8335897bcbab6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paths:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  PathFather: {fileID: 0}
+  paths: []
   bar_end: {fileID: 7940709808787029944}
   bar_start: {fileID: 7940709808090207488}
   bar_p1: {fileID: 7940709808359420280}
@@ -830,8 +821,17 @@ MonoBehaviour:
   crownP1: {fileID: 7922876650725373594}
   crownP2: {fileID: 4361641090772425768}
   start: 0
+  EndMenu: {fileID: 0}
+  BlueWinsText: {fileID: 0}
+  WhiteWinsText: {fileID: 0}
+  BlueLosesText: {fileID: 0}
+  WhiteLosesText: {fileID: 0}
   circle1: {fileID: 0}
   circle2: {fileID: 0}
+  camera_p1: {fileID: 0}
+  camera_p2: {fileID: 0}
+  player_1: {fileID: 0}
+  player_2: {fileID: 0}
 --- !u!1001 &439661003105331453
 PrefabInstance:
   m_ObjectHideFlags: 0
