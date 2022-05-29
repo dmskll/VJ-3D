@@ -933,6 +933,11 @@ PrefabInstance:
       objectReference: {fileID: 2876659222426472669}
     - target: {fileID: 5441170250139584295, guid: b2258a1ed1ca8444ead7d55c9f47104c,
         type: 3}
+      propertyPath: PathFather
+      value: 
+      objectReference: {fileID: 7879530455292799505}
+    - target: {fileID: 5441170250139584295, guid: b2258a1ed1ca8444ead7d55c9f47104c,
+        type: 3}
       propertyPath: paths.Array.data[0]
       value: 
       objectReference: {fileID: 6721282814189986859}

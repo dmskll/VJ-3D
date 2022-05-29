@@ -10,7 +10,9 @@ public class ProgressController : MonoBehaviour
    // public static ProgressController instance = null;
     public static ProgressController instance { get; private set; }
 
-    public PathCreator[] paths = new PathCreator[10];
+
+    public Transform PathFather;
+    public List<PathCreator> paths = new List<PathCreator>();
     EndOfPathInstruction stop = EndOfPathInstruction.Stop;
     float totaldistance = 0;
     float p1_progress = 0;
@@ -132,6 +134,19 @@ public class ProgressController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach(Transform child in PathFather)
+        {
+            if(child.gameObject.tag.Equals("JumpPath"))
+            {
+                paths.Add(child.gameObject.GetComponentInChildren<PathCreator>());
+            }
+            else
+            {
+                paths.Add(child.gameObject.GetComponent<PathCreator>());
+            }
+        }
+
+
         CalculeTotalDistance();
         distanceUI = bar_end.position.y - bar_start.position.y;
 
