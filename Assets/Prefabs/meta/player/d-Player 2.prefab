@@ -5151,9 +5151,6 @@ MonoBehaviour:
   rat_anim: {fileID: 7280777497795597045}
   tail:
   - {fileID: 4505936323148289046}
-  - {fileID: 6861244546385012593}
-  - {fileID: 4466380393074915889}
-  - {fileID: 5451941986534238607}
   stars: {fileID: 8832389013664856779}
   flysmoke: {fileID: 7329119685138317965}
   fallSmoke: {fileID: 207136079261943442}
@@ -15397,7 +15394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7156051006590429454
 Transform:
   m_ObjectHideFlags: 0
@@ -15615,27 +15612,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 552fa5b61f4731a489bdfe87542180b1, type: 3}
---- !u!1 &4466380393074915889 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3932065619591481149, guid: 552fa5b61f4731a489bdfe87542180b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 822546386619284748}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4505936323148289046 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3882675323853187354, guid: 552fa5b61f4731a489bdfe87542180b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 822546386619284748}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6861244546385012593 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6076002430055897725, guid: 552fa5b61f4731a489bdfe87542180b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 822546386619284748}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5451941986534238607 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4666703163335644291, guid: 552fa5b61f4731a489bdfe87542180b1,
     type: 3}
   m_PrefabInstance: {fileID: 822546386619284748}
   m_PrefabAsset: {fileID: 0}

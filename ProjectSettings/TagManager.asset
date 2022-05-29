@@ -13,6 +13,7 @@ TagManager:
   - player2
   - ClimbPath
   - JumpPath
+  - Run
   layers:
   - Default
   - TransparentFX
