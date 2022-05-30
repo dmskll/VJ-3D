@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class circleController : MonoBehaviour
 {
     public Image circulo, centro;
-    public Text text;
+    public GameObject Text;
+    
 
     bool ready;
     bool start;
@@ -28,13 +31,13 @@ public class circleController : MonoBehaviour
         if (b)
         {
             centro.enabled = true;
-            text.enabled = false;
+            Text.SetActive(false);
 
         }
         else
         {
             centro.enabled = false;
-            text.enabled = true;
+            Text.SetActive(true);
         }
     }
 

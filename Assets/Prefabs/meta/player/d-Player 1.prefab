@@ -15305,8 +15305,8 @@ MonoBehaviour:
   deathTime: 2
   actual_movement: 0
   rat: {fileID: 9060811701649200852}
-  jump_speed: 0
-  jump_gravity: 0
+  jump_speed: 0.9
+  jump_gravity: 0.07
   rat_anim: {fileID: 6855306177084677630}
   tail:
   - {fileID: 4526420627871063399}

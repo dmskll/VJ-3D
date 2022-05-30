@@ -27,8 +27,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.44296154, y: 0.5114879, z: 1.0770829}
-  m_Center: {x: 0, y: 0.25574395, z: 0}
+  m_Size: {x: 0.32174248, y: 0.36673093, z: 0.80385745}
+  m_Center: {x: -0.00779652, y: 0.24858677, z: 0.09314487}
 --- !u!1 &1040428705017947047
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,8 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObjInicio: {fileID: 1040428705017947047}
   gameObjFinal: {fileID: 1040428706519596783}
-  velocidad: 10
-  velocidad_giro: 4
+  velocidad: 6
+  velocidad_giro: 1.5
   nogiro: 0
   mus: 1
   start_delay: 0
