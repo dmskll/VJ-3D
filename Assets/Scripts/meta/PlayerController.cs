@@ -392,11 +392,11 @@ public class PlayerController : MonoBehaviour
             godMode = !godMode;
         }
         if (Input.GetKeyDown(KeyCode.Keypad0)) SceneManager.LoadScene(0);
-        else if (Input.GetKeyDown(KeyCode.Keypad1)) SceneManager.LoadScene(1);
-        else if (Input.GetKeyDown(KeyCode.Keypad2)) SceneManager.LoadScene(2);
-        else if (Input.GetKeyDown(KeyCode.Keypad3)) SceneManager.LoadScene(3);
-        else if (Input.GetKeyDown(KeyCode.Keypad4)) SceneManager.LoadScene(4);
-        else if (Input.GetKeyDown(KeyCode.Keypad5)) SceneManager.LoadScene(5);
+        else if (Input.GetKeyDown("1")) SceneManager.LoadScene(1);
+        else if (Input.GetKeyDown("2")) SceneManager.LoadScene(2);
+        else if (Input.GetKeyDown("3")) SceneManager.LoadScene(3);
+        else if (Input.GetKeyDown("4")) SceneManager.LoadScene(4);
+        else if (Input.GetKeyDown("5")) SceneManager.LoadScene(5);
 
         if (dying != -1)
         {
