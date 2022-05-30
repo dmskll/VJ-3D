@@ -6,10 +6,10 @@ using Cinemachine;
 public class CameraScript : MonoBehaviour
 {
 
-    public enum CameraState { Back, Front, SideLeft, SideRight,  NearBack};
+    public enum CameraState { Back, Front, SideLeft, SideRight,  NearBack, Slide};
     public CameraState start_state;
     CameraState actual_state;
-    CinemachineVirtualCamera back, left, right, front, nearback;
+    CinemachineVirtualCamera back, left, right, front, nearback, slide;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +18,7 @@ public class CameraScript : MonoBehaviour
         left = transform.Find("vcam left").gameObject.GetComponent<CinemachineVirtualCamera>();
         right = transform.Find("vcam right").gameObject.GetComponent<CinemachineVirtualCamera>();
         nearback = transform.Find("vcam nearback").gameObject.GetComponent<CinemachineVirtualCamera>();
+        slide = transform.Find("vcam slide").gameObject.GetComponent<CinemachineVirtualCamera>();
         setState(start_state);
 
     }
@@ -46,6 +47,9 @@ public class CameraScript : MonoBehaviour
             case (CameraState.NearBack):
                 nearback.enabled = false;
                 break;
+            case (CameraState.Slide):
+                slide.enabled = false;
+                break;
         }
 
         switch (s)
@@ -64,6 +68,9 @@ public class CameraScript : MonoBehaviour
                 break;
             case (CameraState.NearBack):
                 nearback.enabled = true;
+                break;
+            case (CameraState.Slide):
+                slide.enabled = true;
                 break;
         }
         actual_state = s;

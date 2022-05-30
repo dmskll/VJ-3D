@@ -1881,6 +1881,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.17254902
       objectReference: {fileID: 0}
+    - target: {fileID: 5784567713617233060, guid: e1615b6d4053c1c4bbb9d18cf4bfc737,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7940709809421114481, guid: e1615b6d4053c1c4bbb9d18cf4bfc737,
         type: 3}
       propertyPath: m_Name
@@ -2031,6 +2036,16 @@ PrefabInstance:
       propertyPath: WhiteLosesText
       value: 
       objectReference: {fileID: 7234553111519218347}
+    - target: {fileID: 7964423445560676579, guid: e1615b6d4053c1c4bbb9d18cf4bfc737,
+        type: 3}
+      propertyPath: m_text
+      value: PRESS ENTER
+      objectReference: {fileID: 0}
+    - target: {fileID: 8228831746216337472, guid: e1615b6d4053c1c4bbb9d18cf4bfc737,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8509671269484944216, guid: e1615b6d4053c1c4bbb9d18cf4bfc737,
         type: 3}
       propertyPath: m_Color.b

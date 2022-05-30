@@ -4328,6 +4328,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: fondo
       objectReference: {fileID: 0}
+    - target: {fileID: 1012110494247704932, guid: 2781677d705200b4cb5b8eed9dde08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012110494247704932, guid: 2781677d705200b4cb5b8eed9dde08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 92.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952198280524228500, guid: 2781677d705200b4cb5b8eed9dde08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952198280524228500, guid: 2781677d705200b4cb5b8eed9dde08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151569493696005510, guid: 2781677d705200b4cb5b8eed9dde08e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4472128260773223458, guid: 2781677d705200b4cb5b8eed9dde08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4472128260773223458, guid: 2781677d705200b4cb5b8eed9dde08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7160834513156275252, guid: 2781677d705200b4cb5b8eed9dde08e5,
         type: 3}
       propertyPath: m_RootOrder

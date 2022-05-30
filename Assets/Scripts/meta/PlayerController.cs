@@ -235,8 +235,7 @@ public class PlayerController : MonoBehaviour
             {
                 cd_jump -= Time.deltaTime;
                 if (cd_jump < 0) cd_jump = -1;
-            }
-               
+            }       
         }
         if (jumping)
         {
@@ -244,7 +243,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            UpdateDistance(speed);
+            UpdateDistance(speed * 2f);
         }
         Vector3 position = path.path.GetPointAtDistance(distanceTraveled);
         if (jumping)
@@ -362,11 +361,11 @@ public class PlayerController : MonoBehaviour
 
     bool InteractionKeyDown()
     {
-        if(gameObject.tag.Equals("player1"))
+        if(gameObject.tag.Equals("player2"))
         {
             return Input.GetKey(KeyCode.Space);
         }
-        else if (gameObject.tag.Equals("player2"))
+        else if (gameObject.tag.Equals("player1"))
         {
             return Input.GetKey(KeyCode.Return);
         }

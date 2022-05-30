@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7621881587781710260}
   - component: {fileID: 4544879502175612169}
   m_Layer: 0
-  m_Name: particulas circulares
+  m_Name: particulas circulares 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

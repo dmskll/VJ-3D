@@ -186,10 +186,10 @@ public class ProgressController : MonoBehaviour
 
         if(!start)
         {
-            readyp1 = Input.GetKey(KeyCode.Space);
+            readyp1 = Input.GetKey(KeyCode.Return);
             circle1.setReady(readyp1);
 
-            readyp2 = Input.GetKey(KeyCode.Return);
+            readyp2 = Input.GetKey(KeyCode.Space);
             circle2.setReady(readyp2);
 
             if(readyp1 & readyp2)
